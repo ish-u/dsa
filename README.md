@@ -1,0 +1,29 @@
+# DSA
+
+- [X] Dynamic List
+- [X] Linked List
+- [] Stack
+- [] Queue
+- [] Graphs
+- [] Tree
+- [] Priority Queu
+- [] Heaps
+- [] Algorithms
+    - [] Sorting
+        - Bubble Sort
+        - Insertion Sort
+        - Selection Sort
+        - Merge Sort
+        - Heap Sort
+    - [] Search
+        - Linear Search
+        - Binary Search
+    - [] Tree
+        - [] DFS Traversal(Pre,Post,In)
+        - [] BFS Traversal
+    - [] Graph
+        - [] Eulerian and Hamilton Path
+        - [] Degree
+        - [] Traversal
+        - [] Dijkstra
+        - []  

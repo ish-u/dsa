@@ -38,6 +38,7 @@ public:
     void set(int pos, T ele);
     void reverseItr();
     void reverseRec();
+    int getSize();
 };
 
 // Constructor
@@ -52,7 +53,7 @@ LinkedList<T>::LinkedList()
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
-    std ::cout << "DESTRUCTOR\n";
+    std ::cout << "DESTRUCTOR LINKED LIST -> " << this << "\n";
     Node<T> *temp = head;
     while (temp != nullptr)
     {
@@ -67,7 +68,7 @@ template <typename T>
 void LinkedList<T>::print()
 {
     Node<T> *temp = head;
-    std ::cout << "LINKED LIST : ";
+    std ::cout << "->  ";
     while (temp != nullptr)
     {
         std ::cout << temp->data << "  ";
@@ -89,7 +90,7 @@ void LinkedList<T>::printRecHelper(Node<T> *node)
 template <typename T>
 void LinkedList<T>::printRec()
 {
-    std ::cout << "LINKED LIST : ";
+    std ::cout << "->  ";
     printRecHelper(head);
     std ::cout << "\n";
 }
@@ -127,7 +128,7 @@ void LinkedList<T>::insert(int pos, T ele)
     }
 
     // handling empty list
-    if (head == nullptr && pos > 1)
+    if (head == nullptr && pos != 1)
     {
         std ::cout << "LIST EMPTY\n";
         return;
@@ -221,6 +222,7 @@ T LinkedList<T>::get(int pos)
     // handling empty list
     if (head == nullptr)
     {
+
         throw "LIST EMPTY";
     }
 
@@ -306,4 +308,10 @@ void LinkedList<T>::reverseRec()
     {
         reverseHelper(head);
     }
+}
+
+template <typename T>
+int LinkedList<T>::getSize()
+{
+    return this->size;
 }

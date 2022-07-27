@@ -1,11 +1,23 @@
 #include <iostream>
 // #include "dynamic_list.h"
 // #include "linked_list.h"
+#include "stack.h"
 int main()
 {
-
     return 0;
 }
+// StackDynamic<int> D;
+// for (int i = 0; i < 10; i++)
+// {
+//     D.push(i + 1);
+// }
+// std ::cout << D.top();
+// for (int i = 0; i < 10; i++)
+// {
+//     D.print();
+//     D.pop();
+//     D.print();
+// }
 // LinkedList<int> L;
 // L.print();
 

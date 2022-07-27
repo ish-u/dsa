@@ -13,7 +13,7 @@ public:
     // member functions
     void print();
     void push(T ele);
-    T pop();
+    void pop();
     T top();
     bool isEmpty();
 };
@@ -26,15 +26,23 @@ Stack<T>::Stack(int size)
     this->stack = new T[size];
     this->tos = -1;
 }
+// destructor
+template <typename T>
+Stack<T>::~Stack()
+{
+    // std ::cout << "DESTRUCTOR STACK -> " << this << "\n";
+    delete this->stack;
+}
 
 // print
 template <typename T>
 void Stack<T>::print()
 {
     std ::cout << "STACK\n";
+    std ::cout << "------\n";
     for (int i = tos; i > -1; i--)
     {
-        std ::cout << " " << this->stack[i] << "\n";
+        std ::cout << "  " << this->stack[i] << "\n";
     }
     std ::cout << "------\n";
 }
@@ -46,21 +54,21 @@ void Stack<T>::push(T ele)
     // throw error when stack is full
     if (tos + 1 == size)
     {
-        throw "STACK OVERFLOW";
+        throw std ::invalid_argument("STACK OVERFLOW");
     }
     this->stack[++tos] = ele;
 }
 
 // pop
 template <typename T>
-T Stack<T>::pop()
+void Stack<T>::pop()
 {
     // throw error when the stack is empty
     if (tos == -1)
     {
-        throw "STACK UNDERFLOW";
+        throw std::invalid_argument("STACK UNDERFLOW");
     }
-    return this->stack[tos--];
+    tos--;
 }
 
 // top
@@ -70,9 +78,9 @@ T Stack<T>::top()
     // throw error when the stack is empty
     if (tos == -1)
     {
-        throw "STACK UNDERFLOW";
+        throw std::invalid_argument("STACK UNDERFLOW");
     }
-    return this->stack[tos - 1];
+    return this->stack[tos];
 }
 
 // isEmpty
@@ -95,7 +103,7 @@ public:
     // member function
     void print();
     void push(T ele);
-    T pop();
+    void pop();
     T top();
     bool isEmpty();
 };
@@ -129,13 +137,11 @@ void StackDynamic<T>::push(T ele)
 
 // pop
 template <typename T>
-T StackDynamic<T>::pop()
+void StackDynamic<T>::pop()
 {
     if (this->stack.getSize())
     {
-        T toReturn = this->stack.get(1);
         this->stack.remove(1);
-        return toReturn;
     }
     throw std::invalid_argument("STACK UNDERFLOW");
 }

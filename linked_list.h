@@ -10,6 +10,10 @@ public:
         this->data = data;
         this->next = nullptr;
     }
+    ~Node()
+    {
+        // std ::cout << "DELETING : " << this->data << "\n";
+    }
 };
 
 template <typename T>
@@ -17,12 +21,16 @@ class LinkedList
 {
     Node<T> *head;
     int size;
+    // helpers
+    void printRecHelper(Node<T> *node);
+    void reverseHelper(Node<T> *node);
 
 public:
     LinkedList();
     ~LinkedList();
     // member function
     void print();
+    void printRec();
     void add(T ele);
     void insert(int pos, T ele);
     void remove(int pos);
@@ -45,6 +53,13 @@ template <typename T>
 LinkedList<T>::~LinkedList()
 {
     std ::cout << "DESTRUCTOR\n";
+    Node<T> *temp = head;
+    while (temp != nullptr)
+    {
+        Node<T> *toDelete = temp;
+        temp = temp->next;
+        delete toDelete;
+    }
 }
 
 // print
@@ -58,6 +73,24 @@ void LinkedList<T>::print()
         std ::cout << temp->data << "  ";
         temp = temp->next;
     }
+    std ::cout << "\n";
+}
+
+// print recursive
+template <typename T>
+void LinkedList<T>::printRecHelper(Node<T> *node)
+{
+    if (node != nullptr && node->next != nullptr)
+    {
+        std ::cout << node->data << "  ";
+        printRecHelper(node->next);
+    }
+}
+template <typename T>
+void LinkedList<T>::printRec()
+{
+    std ::cout << "LINKED LIST : ";
+    printRecHelper(head);
     std ::cout << "\n";
 }
 
@@ -253,25 +286,24 @@ void LinkedList<T>::reverseItr()
 
 // reverse recursive
 template <typename T>
-void reverseLL(Node<T> *node)
+void LinkedList<T>::reverseHelper(Node<T> *node)
 {
-    if (node != nullptr && node->next != nullptr)
+    if (node->next == nullptr)
     {
-        reverseLL(node->next);
-        Node<T> *next = node->next;
-        next->next = node;
+        this->head = node;
+        return;
     }
+    reverseHelper(node->next);
+    Node<T> *next = node->next;
+    next->next = node;
+    node->next = nullptr;
 }
 
 template <typename T>
 void LinkedList<T>::reverseRec()
 {
-    Node<T> *tail = head;
-    while (tail->next != nullptr)
+    if (head != nullptr)
     {
-        tail = tail->next;
+        reverseHelper(head);
     }
-    reverseLL(head);
-    head->next = nullptr;
-    head = tail;
 }

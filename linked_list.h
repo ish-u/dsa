@@ -238,39 +238,26 @@ void LinkedList<T>::reverseItr()
         return;
     }
 
-    if (this->size == 2)
+    Node<T> *prev = nullptr;
+    Node<T> *next = nullptr;
+    Node<T> *curr = head;
+    while (curr != nullptr)
     {
-        Node<T> *prev = head;
-        Node<T> *curr = head->next;
+        next = curr->next;
         curr->next = prev;
-        prev->next = nullptr;
-        head = curr;
+        prev = curr;
+        curr = next;
     }
-    else
-    {
-        Node<T> *prev = head;
-        Node<T> *curr = head->next;
-        Node<T> *next = head->next->next;
-        while (next != nullptr)
-        {
-            curr->next = prev;
-            prev = curr;
-            curr = next;
-            next = next->next;
-        }
-        curr->next = prev;
-        head->next = nullptr;
-        head = curr;
-    }
+    head = prev;
 }
 
 // reverse recursive
 template <typename T>
-void reverse(Node<T> *node)
+void reverseLL(Node<T> *node)
 {
     if (node != nullptr && node->next != nullptr)
     {
-        reverse(node->next);
+        reverseLL(node->next);
         Node<T> *next = node->next;
         next->next = node;
     }
@@ -284,7 +271,7 @@ void LinkedList<T>::reverseRec()
     {
         tail = tail->next;
     }
-    reverse(head);
+    reverseLL(head);
     head->next = nullptr;
     head = tail;
 }

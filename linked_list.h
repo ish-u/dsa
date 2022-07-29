@@ -20,6 +20,7 @@ template <typename T>
 class LinkedList
 {
     Node<T> *head;
+    Node<T> *tail;
     int size;
     // helpers
     void printRecHelper(Node<T> *node);
@@ -46,6 +47,7 @@ template <typename T>
 LinkedList<T>::LinkedList()
 {
     this->head = nullptr;
+    this->tail = nullptr;
     this->size = 0;
 }
 
@@ -53,7 +55,7 @@ LinkedList<T>::LinkedList()
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
-    std ::cout << "DESTRUCTOR LINKED LIST -> " << this << "\n";
+    // std ::cout << "DESTRUCTOR LINKED LIST -> " << this << "\n";
     Node<T> *temp = head;
     while (temp != nullptr)
     {
@@ -75,6 +77,11 @@ void LinkedList<T>::print()
         temp = temp->next;
     }
     std ::cout << "\n";
+    // if (head != nullptr && tail != nullptr)
+    // {
+    //     std ::cout << head->data << "\n";
+    //     std ::cout << tail->data << "\n";
+    // }
 }
 
 // print recursive
@@ -102,15 +109,18 @@ void LinkedList<T>::add(T ele)
     if (head == nullptr)
     {
         head = new Node<T>(ele);
+        tail = head;
     }
     else
     {
-        Node<T> *temp = head;
-        while (temp->next != nullptr)
-        {
-            temp = temp->next;
-        }
-        temp->next = new Node<T>(ele);
+        // Node<T> *temp = head;
+        // while (temp->next != nullptr)
+        // {
+        //     temp = temp->next;
+        // }
+        // temp->next = new Node<T>(ele);
+        tail->next = new Node<T>(ele);
+        tail = tail->next;
     }
     this->size++;
 }
@@ -138,6 +148,7 @@ void LinkedList<T>::insert(int pos, T ele)
     if (head == nullptr && pos == 1)
     {
         head = new Node<T>(ele);
+        tail = head;
     }
     // insert at the beginning in a non-empty list
     else if (head != nullptr && pos == 1)
@@ -161,6 +172,10 @@ void LinkedList<T>::insert(int pos, T ele)
         }
         prev->next = temp;
         temp->next = curr;
+        if (pos == size + 1)
+        {
+            this->tail = this->tail->next;
+        }
     }
     this->size++;
 }
@@ -169,6 +184,7 @@ void LinkedList<T>::insert(int pos, T ele)
 template <typename T>
 void LinkedList<T>::remove(int pos)
 {
+    // std ::cout << pos << "\t" << size << "\n";
     // handling out of bounds 'pos'
     if (pos > size || pos < 0)
     {
@@ -187,7 +203,15 @@ void LinkedList<T>::remove(int pos)
     if (pos == 1)
     {
         Node<T> *temp = head;
-        head = head->next;
+        if (size == 0)
+        {
+            head = nullptr;
+            tail = nullptr;
+        }
+        else
+        {
+            head = head->next;
+        }
         delete temp;
     }
     // delete the bw 2 and 'size'
@@ -202,9 +226,13 @@ void LinkedList<T>::remove(int pos)
             curr = curr->next;
             count++;
         }
-        Node<T> *temp = curr;
         prev->next = curr->next;
-        delete temp;
+        if (curr == tail)
+        {
+            tail = prev;
+            prev->next = nullptr;
+        }
+        delete curr;
     }
     this->size--;
 }
@@ -283,6 +311,7 @@ void LinkedList<T>::reverseItr()
         prev = curr;
         curr = next;
     }
+    tail = head;
     head = prev;
 }
 
@@ -306,7 +335,9 @@ void LinkedList<T>::reverseRec()
 {
     if (head != nullptr)
     {
+        Node<T> *temp = head;
         reverseHelper(head);
+        tail = temp;
     }
 }
 

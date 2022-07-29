@@ -21,9 +21,9 @@ public:
     }
 };
 
-// Tree
+// BInarySearchTree
 template <typename T>
-class Tree
+class BinarySearchTree
 {
 private:
     TreeNode<T> *root;
@@ -39,8 +39,8 @@ private:
     void deleteNodeHelper(TreeNode<T> *root, T ele);
 
 public:
-    Tree();
-    ~Tree();
+    BinarySearchTree();
+    ~BinarySearchTree();
     // member functions
     void insert(T data);
     void insertRec(T data);
@@ -58,25 +58,25 @@ public:
     int height();
     void deleteNode(T ele);
     void findAndReplace();
-    void clear();
+    void inorderSuccessor(T ele);
 };
 
 // constructor
 template <typename T>
-Tree<T>::Tree()
+BinarySearchTree<T>::BinarySearchTree()
 {
     this->root = nullptr;
 }
 
 // destructor
 template <typename T>
-Tree<T>::~Tree()
+BinarySearchTree<T>::~BinarySearchTree()
 {
     std ::cout << "DELETING " << this << "\n";
 }
 
 template <typename T>
-void Tree<T>::search(T ele)
+void BinarySearchTree<T>::search(T ele)
 {
     TreeNode<T> *temp = root;
     while (temp != nullptr)
@@ -100,7 +100,7 @@ void Tree<T>::search(T ele)
 
 // insert
 template <typename T>
-void Tree<T>::insert(T data)
+void BinarySearchTree<T>::insert(T data)
 {
     /*
         1. Check if root is empty
@@ -143,7 +143,7 @@ void Tree<T>::insert(T data)
 
 // insert recursively
 template <typename T>
-TreeNode<T> *Tree<T>::insertRecHelper(TreeNode<T> *root, T data)
+TreeNode<T> *BinarySearchTree<T>::insertRecHelper(TreeNode<T> *root, T data)
 {
     if (root == nullptr)
     {
@@ -164,14 +164,14 @@ TreeNode<T> *Tree<T>::insertRecHelper(TreeNode<T> *root, T data)
 }
 
 template <typename T>
-void Tree<T>::insertRec(T data)
+void BinarySearchTree<T>::insertRec(T data)
 {
     this->root = insertRecHelper(this->root, data);
 }
 
 // inorder
 template <typename T>
-void Tree<T>::inorder(TreeNode<T> *root)
+void BinarySearchTree<T>::inorder(TreeNode<T> *root)
 {
     if (root != nullptr)
     {
@@ -182,7 +182,7 @@ void Tree<T>::inorder(TreeNode<T> *root)
 }
 
 template <typename T>
-void Tree<T>::inorderRecursive()
+void BinarySearchTree<T>::inorderRecursive()
 {
     std ::cout << "INORDER : ";
     inorder(this->root);
@@ -191,7 +191,7 @@ void Tree<T>::inorderRecursive()
 
 // preorder
 template <typename T>
-void Tree<T>::preorder(TreeNode<T> *root)
+void BinarySearchTree<T>::preorder(TreeNode<T> *root)
 {
     if (root != nullptr)
     {
@@ -202,7 +202,7 @@ void Tree<T>::preorder(TreeNode<T> *root)
 }
 
 template <typename T>
-void Tree<T>::preorderRecursive()
+void BinarySearchTree<T>::preorderRecursive()
 {
     std ::cout << "PREORDER : ";
     preorder(this->root);
@@ -211,7 +211,7 @@ void Tree<T>::preorderRecursive()
 
 // postorder
 template <typename T>
-void Tree<T>::postorder(TreeNode<T> *root)
+void BinarySearchTree<T>::postorder(TreeNode<T> *root)
 {
     if (root != nullptr)
     {
@@ -222,7 +222,7 @@ void Tree<T>::postorder(TreeNode<T> *root)
 }
 
 template <typename T>
-void Tree<T>::postorderRecursive()
+void BinarySearchTree<T>::postorderRecursive()
 {
     std ::cout << "POSTORDER : ";
     postorder(this->root);
@@ -231,7 +231,7 @@ void Tree<T>::postorderRecursive()
 
 // preorder iterative
 template <typename T>
-void Tree<T>::preorderIterative()
+void BinarySearchTree<T>::preorderIterative()
 {
     /*
         1. Create a Stack and insert 'root' into the Stack
@@ -268,7 +268,7 @@ void Tree<T>::preorderIterative()
 
 // postorder iterative
 template <typename T>
-void Tree<T>::postorderIterative()
+void BinarySearchTree<T>::postorderIterative()
 {
     /*
         1. Create two Stack S1 and S2 and insert 'root' into the S1
@@ -313,7 +313,7 @@ void Tree<T>::postorderIterative()
 
 // inorder iterative
 template <typename T>
-void Tree<T>::inorderIterative()
+void BinarySearchTree<T>::inorderIterative()
 {
     /*
         1. Create Stack S1 and S2 and insert 'root' into S1
@@ -348,7 +348,7 @@ void Tree<T>::inorderIterative()
 }
 // level order traversal
 template <typename T>
-void Tree<T>::levelOrder()
+void BinarySearchTree<T>::levelOrder()
 {
     /*
         1. Create a Queue Q and enqueue the root
@@ -381,7 +381,7 @@ void Tree<T>::levelOrder()
 
 // min
 template <typename T>
-T Tree<T>::min(TreeNode<T> *root)
+T BinarySearchTree<T>::min(TreeNode<T> *root)
 {
     TreeNode<T> *node = root;
     while (node->left != nullptr)
@@ -394,7 +394,7 @@ T Tree<T>::min(TreeNode<T> *root)
 
 // max
 template <typename T>
-T Tree<T>::max(TreeNode<T> *root)
+T BinarySearchTree<T>::max(TreeNode<T> *root)
 {
     TreeNode<T> *node = root;
     while (node->right != nullptr)
@@ -407,7 +407,7 @@ T Tree<T>::max(TreeNode<T> *root)
 
 // height
 template <typename T>
-int Tree<T>::findHeight(TreeNode<T> *root)
+int BinarySearchTree<T>::findHeight(TreeNode<T> *root)
 {
     if (root == nullptr)
     {
@@ -420,7 +420,7 @@ int Tree<T>::findHeight(TreeNode<T> *root)
 }
 
 template <typename T>
-int Tree<T>::height()
+int BinarySearchTree<T>::height()
 {
     std ::cout << findHeight(root) << "\n";
     return findHeight(root);
@@ -428,7 +428,7 @@ int Tree<T>::height()
 
 // delete and merge
 template <typename T>
-void Tree<T>::deleteNode(T ele)
+void BinarySearchTree<T>::deleteNode(T ele)
 {
     /*
         1. Search the Node to be deleted
@@ -450,7 +450,7 @@ void Tree<T>::deleteNode(T ele)
 }
 
 template <typename T>
-void Tree<T>::deleteNodeHelper(TreeNode<T> *root, T ele)
+void BinarySearchTree<T>::deleteNodeHelper(TreeNode<T> *root, T ele)
 {
     TreeNode<T> *parent = nullptr;
     TreeNode<T> *node = root;
@@ -529,4 +529,59 @@ void Tree<T>::deleteNodeHelper(TreeNode<T> *root, T ele)
             deleteNodeHelper(node->right, node->data);
         }
     }
+
+    throw std ::invalid_argument("ELEMENT NOT FOUND");
+}
+
+// inorder successor
+template <typename T>
+void BinarySearchTree<T>::inorderSuccessor(T ele)
+{
+    TreeNode<T> *node = root;
+    int flag = 0;
+    while (node != nullptr)
+    {
+        if (node->data == ele)
+        {
+            flag = 1;
+            break;
+        }
+        else if (ele > node->data)
+        {
+            node = node->right;
+        }
+        else if (ele < node->data)
+        {
+            node = node->left;
+        }
+    }
+
+    if (flag)
+    {
+        // CASE 1 : RIGHT SUBTREE IS NOT NULL
+        if (node->right != nullptr)
+        {
+            std ::cout << min(node->right) << "\n";
+        }
+        else
+        {
+            TreeNode<T> *next;
+            TreeNode<T> *curr = this->root;
+            while (curr != node)
+            {
+                if (curr->data > node->data)
+                {
+                    next = curr;
+                    curr = curr->left;
+                }
+                else if (curr->data < node->data)
+                {
+                    curr = curr->right;
+                }
+            }
+            std ::cout << next->data << "\n";
+        }
+    }
+
+    std ::invalid_argument("ELEMENT NOT FOUND");
 }

@@ -111,14 +111,14 @@ public:
 template <typename T>
 StackDynamic<T>::StackDynamic()
 {
-    std ::cout << "CONSTRUCTOR STACK -> " << this << "\n";
+    // std ::cout << "CONSTRUCTOR STACK -> " << this << "\n";
 }
 
 // destructor
 template <typename T>
 StackDynamic<T>::~StackDynamic()
 {
-    std ::cout << "DESTRUCTOR STACK -> " << this << "\n";
+    // std ::cout << "DESTRUCTOR STACK -> " << this << "\n";
 }
 
 // print
@@ -142,6 +142,7 @@ void StackDynamic<T>::pop()
     if (this->stack.getSize())
     {
         this->stack.remove(1);
+        return;
     }
     throw std::invalid_argument("STACK UNDERFLOW");
 }
@@ -162,5 +163,5 @@ T StackDynamic<T>::top()
 template <typename T>
 bool StackDynamic<T>::isEmpty()
 {
-    return this->stack.getSize();
+    return this->stack.getSize() == 0;
 }

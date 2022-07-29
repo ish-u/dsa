@@ -2,10 +2,10 @@
 
 - [X] Dynamic List
 - [X] Linked List
-- [] Stack
-- [] Queue
+- [X] Stack
+- [X] Queue
+- [X] Tree
 - [] Graphs
-- [] Tree
 - [] Priority Queu
 - [] Heaps
 - [] Algorithms

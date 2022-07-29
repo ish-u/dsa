@@ -1,3 +1,4 @@
+// #include "linked_list.h"
 template <typename T>
 class Queue
 {
@@ -101,6 +102,81 @@ T Queue<T>::peek()
     }
 }
 
+// Queue Dynamic
+template <typename T>
+class QueueDynamic
+{
+    LinkedList<T> queue;
+
+public:
+    // construtor
+    QueueDynamic();
+    ~QueueDynamic();
+    // member function
+    void print();
+    void enqueue(T ele);
+    void dequeue();
+    T peek();
+    bool isEmpty();
+};
+
+// constructor
+template <typename T>
+QueueDynamic<T>::QueueDynamic()
+{
+}
+
+// desctructor
+template <typename T>
+QueueDynamic<T>::~QueueDynamic()
+{
+}
+
+// print
+template <typename T>
+void QueueDynamic<T>::print()
+{
+    std ::cout << "QUEUE :";
+    this->queue.print();
+}
+
+// enqueue
+template <typename T>
+void QueueDynamic<T>::enqueue(T ele)
+{
+    this->queue.add(ele);
+}
+
+// dequeue
+template <typename T>
+void QueueDynamic<T>::dequeue()
+{
+    if (this->queue.getSize())
+    {
+        this->queue.remove(1);
+        return;
+    }
+    throw std ::invalid_argument("QUEUE EMPTY");
+}
+
+// peek
+template <typename T>
+T QueueDynamic<T>::peek()
+{
+    if (this->queue.getSize())
+    {
+        return this->queue.get(1);
+    }
+    throw std ::invalid_argument("QUEUE EMPTY");
+}
+
+template <typename T>
+bool QueueDynamic<T>::isEmpty()
+{
+    return this->queue.getSize() == 0;
+}
+
+// Circular Queue
 template <typename T>
 class CircularQueue
 {

@@ -10,14 +10,21 @@
 - [] Heaps
 - [] Algorithms
     - [] Sorting
-        - Bubble Sort
-        - Insertion Sort
-        - Selection Sort
-        - Merge Sort
-        - Heap Sort
+        - [] Bubble Sort
+        - [] Insertion Sort
+        - [] Selection Sort
+        - [] Merge Sort
+        - [] Heap Sort
     - [] Search
-        - Linear Search
-        - Binary Search
+        - [] Linear Search
+        - [] Binary Search
+        - [] Graph Search
+            - [] A*
+            - [] Best First Search
+            - [] BFS
+            - [] DFS
+            - [] Depth Limited Search
+            - [] British Mueseum
     - [] Tree
         - [] DFS Traversal(Pre,Post,In)
         - [] BFS Traversal
@@ -26,4 +33,15 @@
         - [] Degree
         - [] Traversal
         - [] Dijkstra
-        - []  
+        - [] Path Finding Algorithms
+    - [] Greedy Algorithms
+        - [] Interval Scheduling Problem
+        - [] Prim's
+        - [] Kruskal
+        - [] Minimum Spanning Tree
+        - [] Shortest Path 
+    - [] Dynamic Programming
+        - [] Weighted Interval Scheduling Problem
+        - [] Knapsack Problem
+        - [] Fibonacci 
+        - [] Subset Sum Problem 

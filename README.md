@@ -5,7 +5,7 @@
 - [X] Stack
 - [X] Queue
 - [X] Tree
-- [] Graphs
+- [X] Graphs
 - [] Priority Queu
 - [] Heaps
 - [] Algorithms

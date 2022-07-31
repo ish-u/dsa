@@ -1,10 +1,12 @@
 #include <iostream>
-#include "stack_application.h"
+// #include "tree.h"
+// #include "linked_list.h"
+// #include "queue.h"
+// #include "graph.h"
 int main()
 {
     try
     {
-        infixToPostfix("10 + 20 * 30 - 40 * 50");
     }
     catch (const std::exception &e)
     {
